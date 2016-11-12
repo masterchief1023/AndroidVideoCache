@@ -106,6 +106,13 @@ final class HttpProxyCacheServerClients {
         }
 
         @Override
+        public void onError(Throwable e) {
+            for (CacheListener cacheListener : listeners) {
+                cacheListener.onError(e);
+            }
+        }
+
+        @Override
         public void handleMessage(Message msg) {
             for (CacheListener cacheListener : listeners) {
                 cacheListener.onCacheAvailable((File) msg.obj, url, msg.arg1);

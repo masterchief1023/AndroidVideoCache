@@ -123,7 +123,7 @@ public class HttpUrlSource implements Source {
             this.sourceInfoStorage.put(sourceInfo.url, sourceInfo);
             LOG.debug("Source info fetched: " + sourceInfo);
         } catch (IOException e) {
-            LOG.error("Error fetching info from " + sourceInfo.url, e);
+            LOG.error("Error fetching info from " + sourceInfo.url, e.getMessage());
         } finally {
             ProxyCacheUtils.close(inputStream);
             if (urlConnection != null) {

@@ -34,6 +34,12 @@ class HttpProxyCache extends ProxyCache {
         this.listener = cacheListener;
     }
 
+    @Override
+    protected void onError(Throwable e) {
+        super.onError(e);
+        listener.onError(e);
+    }
+
     public void processRequest(GetRequest request, Socket socket) throws IOException, ProxyCacheException {
         OutputStream out = new BufferedOutputStream(socket.getOutputStream());
         String responseHeaders = newResponseHeaders(request);

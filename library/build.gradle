@@ -25,6 +25,16 @@ dependencies {
     compile 'com.google.android:android:1.6_r2'
     compile 'org.slf4j:slf4j-android:1.7.21'
 }
+task clearJar(type: Delete) {
+    delete 'libs/androidVideoCache.jar'
+}
+
+task makeJar(type: Copy) {
+    from('build/bundles/release/')
+    into('libs/')
+    include('classes.jar')
+    rename ('classes.jar', 'androidVideoCache.jar')
+}
 
 publish {
     userOrg = 'alexeydanilov'
